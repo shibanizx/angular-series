@@ -1,0 +1,33 @@
+<li class="list-group-item">
+    <div class="list-group-item-heading">
+        <strong class="show-heading">{{show.showName}}</strong>
+        <span class="badge" [ngStyle]="{ 'background-color' : show.productionHouse.colorCode }">{{show.productionHouse.productionHouse}}</span>
+        <span *ngIf="show.favorite"><i class="fa fa-heart"></i></span>
+        <span *ngIf="show.ended" class="label label-danger">Ended</span>
+        <div class="{{show.rating | removeSpaces }} pull-right">
+            <span><i class="fa fa-star"></i></span>
+            <span>{{ show.rating }}</span>
+            <div class="badge" [ngStyle]="{ 'background-color' : show.watchStatus.colorCode }">
+                <span><i class="fa fa-television"></i></span>
+                <span>{{show.watchStatus.watchStatus}}</span>
+            </div>
+        </div>
+
+        <!-- <button class="btn btn-xs pull-right" (click)="updateShow()">Edit Show</button>
+        <button class="btn btn-xs pull-right" (click)="deleteShow(show.showId)">Delete Show</button> -->
+    </div>
+    <div class="list-group-item-heading">
+        <b>Added On : </b>{{show.addedOn | date:'medium' }}
+        <span *ngIf="show.modifiedOn">
+            <b>Modified On : </b>{{show.modifiedOn | date:'medium'}}
+        </span>
+        <span class="pull-right">
+            <span *ngFor="let genre of show.genre">
+                <span class="label label-default">{{ genre. genre }}</span>
+            </span>
+        </span>
+    </div>
+    <div class="list-group-item-text">
+
+    </div>
+</li>
