@@ -1,0 +1,12 @@
+<div class="panel panel-default panel-body">
+  <app-filter-list (selectedFilter)="filterList($event)"></app-filter-list>
+  <div class="panel-body list-group">
+    <div *ngFor="let show of shows | seriesFilter:filterOptions">
+      <div class="row">
+        <app-show-list-item [routerLink]="['/editShow']" [show]="show" (click)="editShow(show)"
+          style="cursor: pointer;">
+        </app-show-list-item>
+      </div>
+    </div>
+  </div>
+</div>

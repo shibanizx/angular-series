@@ -1,0 +1,60 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h5><strong>CHOOSE THE OPTIONS TO FILTER THE LIST BY:</strong></h5>
+  </div>
+  <div class="panel-body">
+    <div class="container-fluid">
+      <div class="row form-group">
+        <span class="col-lg-2">
+          <input type="checkbox" name="favorite" value="favorite" [(ngModel)]="filterOptions.isFavorite" />
+          <span>Favorite</span>
+        </span>
+        <span class="col-lg-2">
+          <input type="checkbox" name="ended" value="ended" [(ngModel)]="filterOptions.isEnded" />
+          <span>Ended/Cancelled</span>
+        </span>
+        <span class="col-lg-2">
+          <select name="productionHouse" id="production" [(ngModel)]="filterOptions.productionHouseId"
+            name="productionHouse">
+            <option [ngValue]="undefined" disabled selected> Production House </option>
+            <option *ngFor="let production of productionHouseList" id="production.productionHouseId"
+              [value]="production.productionHouseId">{{production.productionHouse}}</option>
+          </select>
+        </span>
+        <span class="col-lg-2">
+          <select id="channel" [(ngModel)]="filterOptions.onlineChannelId" name="onlineChannel" required>
+            <option [ngValue]="undefined" disabled selected>Online Channel</option>
+            <option *ngFor="let channel of channelList" id="channel.onlineChannelId" [value]="channel.onlineChannelId">
+              {{channel.onlineChannel}}</option>
+          </select>
+        </span>
+        <span class="col-lg-2">
+          <select id="language" [(ngModel)]="filterOptions.languageId" name="language">
+            <option [ngValue]="undefined" disabled selected>Language</option>
+            <option *ngFor="let language of languageList" id="language.languageId" [value]="language.languageId">
+              {{language.language}}</option>
+          </select>
+        </span>
+        <span class="col-lg-2">
+          <select id="status" [(ngModel)]="filterOptions.watchStatusId" name="watchStatus">
+            <option [ngValue]="undefined" disabled selected> Watch Status </option>
+            <option *ngFor="let status of statusList" id="status.watchStatusId" [value]="status.watchStatusId">
+              {{status.watchStatus}}
+            </option>
+          </select>
+        </span>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success" (click)="applyFilter()">Apply Filters</button>
+        <button type="reset" class="btn btn-primary" (click)="clearFilter()">Clear Filters</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <span class="glyphicon glyphicon-ok-sign"></span>
+<div class="container-fluid">
+  <label *ngFor="let option of filterOptions; let i = index" class="checkbox-inline">
+    <input type="checkbox" [class]="option.class" (click)="showClick(option)" name="filterOptions"
+      value="{{option.value}}" [(ngModel)]="option.checked" /> {{option.name}}
+  </label>
+</div> -->
