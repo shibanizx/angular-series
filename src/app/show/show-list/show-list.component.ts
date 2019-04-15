@@ -11,6 +11,7 @@ import { FilterModel } from '../shared/model/filter-model';
 export class ShowListComponent implements OnInit {
 
   private shows : Array<ShowModel>;
+  
   private filterOptions : FilterModel;
   
   constructor(private seriesService : SeriesService) { }
@@ -29,6 +30,6 @@ export class ShowListComponent implements OnInit {
 
   filterList(filterOptions: FilterModel) : void {
     this.filterOptions = filterOptions;
-    this.getShowList();
+    this.shows = [...this.shows];
   }
 }

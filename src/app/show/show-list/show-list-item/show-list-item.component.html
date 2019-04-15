@@ -2,8 +2,8 @@
     <div class="list-group-item-heading">
         <strong class="show-heading">{{show.showName}}</strong>
         <span class="badge" [ngStyle]="{ 'background-color' : show.productionHouse.colorCode }">{{show.productionHouse.productionHouse}}</span>
-        <span *ngIf="show.favorite"><i class="fa fa-heart"></i></span>
         <span *ngIf="show.ended" class="label label-danger">Ended</span>
+        <span *ngIf="show.favorite"><i class="fa fa-heart"></i></span>
         <div class="{{show.rating | removeSpaces }} pull-right">
             <span><i class="fa fa-star"></i></span>
             <span>{{ show.rating }}</span>
@@ -13,8 +13,7 @@
             </div>
         </div>
 
-        <!-- <button class="btn btn-xs pull-right" (click)="updateShow()">Edit Show</button>
-        <button class="btn btn-xs pull-right" (click)="deleteShow(show.showId)">Delete Show</button> -->
+        <!-- <button class="btn btn-xs pull-right" (click)="deleteShow(show.showId)">Delete Show</button> -->
     </div>
     <div class="list-group-item-heading">
         <b>Added On : </b>{{show.addedOn | date:'medium' }}

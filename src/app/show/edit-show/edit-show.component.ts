@@ -11,7 +11,7 @@ import { AudioLanguageModel } from '../shared/model/audio-language-model';
 import { OnlineChannelModel } from '../shared/model/online-channel-model';
 import { WatchStatusModel } from '../shared/model/watch-status-model';
 import { ProductionHouseModel } from '../shared/model/production-house-model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-show',
@@ -51,7 +51,7 @@ export class EditShowComponent implements OnInit {
     private statusService : WatchStatusService,
     private productionHouseService : ProductionHouseService,
     private seriesService : SeriesService,
-    private route: ActivatedRoute) 
+    private route: Router) 
     { }
 
   ngOnInit() {
@@ -102,5 +102,7 @@ export class EditShowComponent implements OnInit {
   updateShow(showId : string) : void {
     this.show.modifiedOn = Date.now();
     this.seriesService.updateShow(showId, this.show).subscribe(message => this.alertMessage = message);
+
+    this.route.navigate(['/showList']);
   }
 }
