@@ -11,6 +11,8 @@ import { WatchStatusModel } from '../shared/model/watch-status-model';
 import { ProductionHouseService } from '../shared/service/production-house.service';
 import { ProductionHouseModel } from '../shared/model/production-house-model';
 import { ShowModel } from '../shared/model/show-model';
+import { RatingsModel } from '../shared/model/ratings-model';
+import { RatingsService } from '../shared/service/ratings.service';
 
 @Component({
   selector: 'app-add-show',
@@ -21,7 +23,8 @@ import { ShowModel } from '../shared/model/show-model';
     ProductionHouseService,
     WatchStatusService,
     AudioLanguageService,
-    OnlineChannelService
+    OnlineChannelService,
+    RatingsService
   ]
 })
 export class AddShowComponent implements OnInit {
@@ -43,6 +46,7 @@ export class AddShowComponent implements OnInit {
   private channelList : Array<OnlineChannelModel>;
   private statusList : Array<WatchStatusModel>;
   private productionHouseList : Array<ProductionHouseModel>;
+  private ratingsList : Array<RatingsModel>;
   
   constructor(
     private genreService : GenreService,
@@ -50,6 +54,7 @@ export class AddShowComponent implements OnInit {
     private languageService : AudioLanguageService,
     private statusService : WatchStatusService,
     private productionHouseService : ProductionHouseService,
+    private ratingsService : RatingsService,
     private seriesService : SeriesService
   ) { 
     
@@ -59,6 +64,7 @@ export class AddShowComponent implements OnInit {
     this.getOnlineChannels();
     this.getProductionHouses();
     this.getLanguages();
+    this.getRatings();
   }
 
   ngOnInit() {  }
@@ -69,6 +75,7 @@ export class AddShowComponent implements OnInit {
     this.show.onlineChannel = new OnlineChannelModel();
     this.show.watchStatus = new WatchStatusModel();
     this.show.language = new AudioLanguageModel();
+    this.show.rating = new RatingsModel();
 
     this.alertMessage = '';
   }
@@ -102,11 +109,19 @@ export class AddShowComponent implements OnInit {
       this.languageList = language;
     });
   }
+
+  getRatings() : void {
+    this.ratingsService.getRatingsList().subscribe(rating => {
+      this.ratingsList = rating;
+    });
+  }
   
   submitShow() : void {
     this.show.addedOn = this.show.modifiedOn;
-    this.seriesService.addShow(this.show).subscribe(message => this.alertMessage = message);
 
-    this.initializeModel();
+    console.log(this.show);
+    // this.seriesService.addShow(this.show).subscribe(message => this.alertMessage = message);
+
+    // this.initializeModel();
   }
 }

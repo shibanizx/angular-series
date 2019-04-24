@@ -88,7 +88,7 @@
 
   <label for="ratings">Rating</label>
   <div class="form-group">
-    <fieldset class="rating">
+    <!-- <fieldset class="rating">
       <input type="radio" id="rating5" name="rating" [value]="5" [(ngModel)]="show.rating" name="rating5" /><label
         class="full" for="rating5" title="Recommended - 5 Stars"></label>
       <input type="radio" id="rating4" name="rating" [value]="4" [(ngModel)]="show.rating" name="rating4" /><label
@@ -99,8 +99,16 @@
         class="full" for="rating2" title="Time-Pass - 2 Stars"></label>
       <input type="radio" id="rating1" name="rating" [value]="1" [(ngModel)]="show.rating" name="rating1" /><label
         class="full" for="rating1" title="Voluntary Suffocation - 1 Star" checked></label>
-    </fieldset> <br>
+    </fieldset> <br> -->
+<div class="rating">
+    <div *ngFor="let rating of ratingsList">
+      <input type="radio" [id]="rating.ratingText" name="ratings" [value]="rating.rating"
+        [(ngModel)]="show.rating.rating" [name]="rating.ratingText" />
+      <label class="full" [for]="rating.ratingText" [title]="rating.ratingText"></label>
+    </div>
+    <br>
   </div>
+</div>
 
   <label for="remarks">Remarks</label>
   <div class="form-group">
