@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ShowListComponent } from './show-list/show-list.component';
 import { ShowComponent } from './show.component';
@@ -19,7 +20,8 @@ import { FilterListComponent } from './show-list/filter-list/filter-list.compone
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    NgxPaginationModule
   ],
   exports : [
     ShowComponent,
