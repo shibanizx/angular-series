@@ -88,16 +88,16 @@
   <label for="ratings">Rating</label>
   <div class="form-group">
     <fieldset class="rating">
-      <input type="radio" id="rating5" name="rating" value="Recommended" [(ngModel)]="show.rating" name="rating5"/><label
-        class="full" for="rating5" title="Recommended - 5 Stars"></label>
-      <input type="radio" id="rating4" name="rating" value="Pretty Good" [(ngModel)]="show.rating" name="rating4" /><label
-        class="full" for="rating4" title="Pretty Good - 4 Stars"></label>
-      <input type="radio" id="rating3" name="rating" value="Watchable" [(ngModel)]="show.rating" name="rating3" /><label
-        class="full" for="rating3" title="Watchable - 3 Stars"></label>
-      <input type="radio" id="rating2" name="rating" value="Time-Pass" [(ngModel)]="show.rating" name="rating2" /><label
-        class="full" for="rating2" title="Time-Pass - 2 Stars"></label>
-      <input type="radio" id="rating1" name="rating" value="Voluntary Suffocation" [(ngModel)]="show.rating" name="rating1" /><label
-        class="full" for="rating1" title="Voluntary Suffocation - 1 Star"></label>
+      <input type="radio" id="rating5" name="rating" [value]="ratingsList[4].rating" [(ngModel)]="show.rating.rating"
+        name="rating5" /><label class="full" for="rating5" title="{{ratingsList && ratingsList[4].ratingText}}"></label>
+      <input type="radio" id="rating4" name="rating" [value]="ratingsList[3].rating" [(ngModel)]="show.rating.rating"
+        name="rating4" /><label class="full" for="rating4" title="{{ratingsList && ratingsList[3].ratingText}}"></label>
+      <input type="radio" id="rating3" name="rating" [value]="ratingsList[2].rating" [(ngModel)]="show.rating.rating"
+        name="rating3" /><label class="full" for="rating3" title="{{ratingsList && ratingsList[2].ratingText}}"></label>
+      <input type="radio" id="rating2" name="rating" [value]="ratingsList[1].rating" [(ngModel)]="show.rating.rating"
+        name="rating2" /><label class="full" for="rating2" title="{{ratingsList && ratingsList[1].ratingText}}"></label>
+      <input type="radio" id="rating1" name="rating" [value]="ratingsList[0].rating" [(ngModel)]="show.rating.rating"
+        name="rating1" /><label class="full" for="rating1" title="{{ratingsList && ratingsList[0].ratingText}}"></label>
     </fieldset> <br>
   </div>
 

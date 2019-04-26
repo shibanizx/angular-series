@@ -1,4 +1,5 @@
 export class RatingsModel {
-    rating : number;
+    rating : string;
     ratingText : string;
+    ratingColorCode : string;
 }

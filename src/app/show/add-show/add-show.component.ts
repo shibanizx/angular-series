@@ -118,10 +118,8 @@ export class AddShowComponent implements OnInit {
   
   submitShow() : void {
     this.show.addedOn = this.show.modifiedOn;
+    this.seriesService.addShow(this.show).subscribe(message => this.alertMessage = message);
 
-    console.log(this.show);
-    // this.seriesService.addShow(this.show).subscribe(message => this.alertMessage = message);
-
-    // this.initializeModel();
+    this.initializeModel();
   }
 }

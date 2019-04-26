@@ -12,6 +12,8 @@ import { OnlineChannelModel } from '../shared/model/online-channel-model';
 import { WatchStatusModel } from '../shared/model/watch-status-model';
 import { ProductionHouseModel } from '../shared/model/production-house-model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RatingsService } from '../shared/service/ratings.service';
+import { RatingsModel } from '../shared/model/ratings-model';
 
 @Component({
   selector: 'app-edit-show',
@@ -22,7 +24,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     ProductionHouseService,
     WatchStatusService,
     AudioLanguageService,
-    OnlineChannelService
+    OnlineChannelService,
+    RatingsService
   ]
 })
 export class EditShowComponent implements OnInit {
@@ -44,6 +47,7 @@ export class EditShowComponent implements OnInit {
   private channelList : Array<OnlineChannelModel>;
   private statusList : Array<WatchStatusModel>;
   private productionHouseList : Array<ProductionHouseModel>;
+  private ratingsList : Array<RatingsModel>;
 
   constructor(private genreService : GenreService,
     private channelService : OnlineChannelService,
@@ -51,6 +55,7 @@ export class EditShowComponent implements OnInit {
     private statusService : WatchStatusService,
     private productionHouseService : ProductionHouseService,
     private seriesService : SeriesService,
+    private ratingsService : RatingsService,
     private route: Router) 
     { }
 
@@ -60,6 +65,7 @@ export class EditShowComponent implements OnInit {
     this.getOnlineChannels();
     this.getProductionHouses();
     this.getLanguages();
+    this.getRatings();
     this.initializeShow();
 
     this.alertMessage = '';
@@ -99,10 +105,16 @@ export class EditShowComponent implements OnInit {
     });
   }
 
+  getRatings() : void {
+    this.ratingsService.getRatingsList().subscribe(rating => {
+      this.ratingsList = rating;
+    });
+  }
+
   updateShow(showId : string) : void {
     this.show.modifiedOn = Date.now();
-    this.seriesService.updateShow(showId, this.show).subscribe(message => this.alertMessage = message);
 
+    this.seriesService.updateShow(showId, this.show).subscribe(message => this.alertMessage = message);
     this.route.navigate(['/showList']);
   }
 }
