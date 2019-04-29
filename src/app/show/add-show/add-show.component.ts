@@ -17,15 +17,7 @@ import { RatingsService } from '../shared/service/ratings.service';
 @Component({
   selector: 'app-add-show',
   templateUrl: './add-show.component.html',
-  styleUrls: ['./add-show.component.css'],
-  providers: [
-    GenreService,
-    ProductionHouseService,
-    WatchStatusService,
-    AudioLanguageService,
-    OnlineChannelService,
-    RatingsService
-  ]
+  styleUrls: ['./add-show.component.css']
 })
 export class AddShowComponent implements OnInit {
 

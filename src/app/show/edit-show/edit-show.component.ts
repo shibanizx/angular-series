@@ -18,15 +18,7 @@ import { RatingsModel } from '../shared/model/ratings-model';
 @Component({
   selector: 'app-edit-show',
   templateUrl: './edit-show.component.html',
-  styleUrls: ['./edit-show.component.css'],
-  providers: [
-    GenreService,
-    ProductionHouseService,
-    WatchStatusService,
-    AudioLanguageService,
-    OnlineChannelService,
-    RatingsService
-  ]
+  styleUrls: ['./edit-show.component.css']
 })
 export class EditShowComponent implements OnInit {
 

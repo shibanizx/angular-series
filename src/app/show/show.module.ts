@@ -14,6 +14,13 @@ import { AddShowComponent } from './add-show/add-show.component';
 import { RemoveSpacesPipe } from './shared/pipe/remove-spaces.pipe';
 import { EditShowComponent } from './edit-show/edit-show.component';
 import { FilterListComponent } from './show-list/filter-list/filter-list.component';
+import { ChartStatisticsComponent } from './chart-statistics/chart-statistics.component';
+import { RatingsService } from './shared/service/ratings.service';
+import { ProductionHouseService } from './shared/service/production-house.service';
+import { OnlineChannelService } from './shared/service/online-channel.service';
+import { AudioLanguageService } from './shared/service/audio-language.service';
+import { WatchStatusService } from './shared/service/watch-status.service';
+import { GenreService } from './shared/service/genre.service';
 
 @NgModule({
   imports: [
@@ -37,10 +44,17 @@ import { FilterListComponent } from './show-list/filter-list/filter-list.compone
     AddShowComponent,
     RemoveSpacesPipe,
     EditShowComponent,
-    FilterListComponent
+    FilterListComponent,
+    ChartStatisticsComponent
   ],
   providers: [ 
-    SeriesService
+    SeriesService,
+    RatingsService,
+    ProductionHouseService,
+    OnlineChannelService,
+    AudioLanguageService,
+    WatchStatusService,
+    GenreService
   ]
 })
 export class ShowModule { }
