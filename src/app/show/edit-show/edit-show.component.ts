@@ -14,6 +14,7 @@ import { ProductionHouseModel } from '../shared/model/production-house-model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RatingsService } from '../shared/service/ratings.service';
 import { RatingsModel } from '../shared/model/ratings-model';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-edit-show',
@@ -59,6 +60,9 @@ export class EditShowComponent implements OnInit {
     this.getLanguages();
     this.getRatings();
     this.initializeShow();
+
+    if(isNullOrUndefined(this.show))
+      this.route.navigate(['/showList']);
 
     this.alertMessage = '';
   }

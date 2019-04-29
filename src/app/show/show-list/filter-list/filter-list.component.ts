@@ -73,7 +73,11 @@ export class FilterListComponent implements OnInit {
   }
 
   applyFilter(): void {
-    this.selectedFilter.emit(this.filterOptions);
+    //this.selectedFilter.emit(this.filterOptions);
+    this.filterOptions.watchStatus = this.statusList.filter(s => s.checked);
+    this.filterOptions.productionHouse = this.productionHouseList.filter(p => p.checked);
+    this.filterOptions.onlineChannel = this.channelList.filter(c => c.checked);
+    this.filterOptions.language = this.languageList.filter(l => l.checked);    
   }
 
   clearFilter(): void {

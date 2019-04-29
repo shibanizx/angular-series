@@ -14,34 +14,44 @@
           <span>Ended/Cancelled</span>
         </span>
         <span class="col-lg-2">
-          <select name="productionHouse" id="production" [(ngModel)]="filterOptions.productionHouseId"
-            name="productionHouse">
-            <option [ngValue]="undefined" disabled selected> Production House </option>
-            <option *ngFor="let production of productionHouseList" id="production.productionHouseId"
-              [value]="production.productionHouseId">{{production.productionHouse}}</option>
-          </select>
+          <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Production House
+              <span class="caret"></span>
+            </button>
+            <ul class="row form-group dropdown-menu">
+              <li *ngFor="let production of productionHouseList" id="production.productionHouseId">
+                <a> <input type="checkbox" [(ngModel)]="production.checked" /><span>{{production.productionHouse}}</span> </a>
+              </li>
+            </ul>
         </span>
         <span class="col-lg-2">
-          <select id="channel" [(ngModel)]="filterOptions.onlineChannelId" name="onlineChannel" required>
-            <option [ngValue]="undefined" disabled selected>Online Channel</option>
-            <option *ngFor="let channel of channelList" id="channel.onlineChannelId" [value]="channel.onlineChannelId">
-              {{channel.onlineChannel}}</option>
-          </select>
+            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Online Channel
+                <span class="caret"></span>
+              </button>
+              <ul class="row form-group dropdown-menu">
+                <li *ngFor="let channel of channelList" id="channel.onlineChannelId">
+                  <a> <input type="checkbox" [(ngModel)]="channel.checked" /><span>{{channel.onlineChannel}}</span> </a>
+                </li>
+              </ul>
         </span>
         <span class="col-lg-2">
-          <select id="language" [(ngModel)]="filterOptions.languageId" name="language">
-            <option [ngValue]="undefined" disabled selected>Language</option>
-            <option *ngFor="let language of languageList" id="language.languageId" [value]="language.languageId">
-              {{language.language}}</option>
-          </select>
+            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Language
+                <span class="caret"></span>
+              </button>
+              <ul class="row form-group dropdown-menu">
+                <li *ngFor="let language of languageList" id="language.languageId">
+                  <a> <input type="checkbox" [(ngModel)]="language.checked" /><span>{{language.language}}</span> </a>
+                </li>
+              </ul>
         </span>
         <span class="col-lg-2">
-          <select id="status" [(ngModel)]="filterOptions.watchStatusId" name="watchStatus">
-            <option [ngValue]="undefined" disabled selected> Watch Status </option>
-            <option *ngFor="let status of statusList" id="status.watchStatusId" [value]="status.watchStatusId">
-              {{status.watchStatus}}
-            </option>
-          </select>
+          <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Watch Status
+            <span class="caret"></span>
+          </button>
+          <ul class="row form-group dropdown-menu">
+            <li *ngFor="let status of statusList" id="status.watchStatusId">
+              <a> <input type="checkbox" [(ngModel)]="status.checked" /><span>{{status.watchStatus}}</span> </a>
+            </li>
+          </ul>
         </span>
       </div>
       <div class="text-center">
