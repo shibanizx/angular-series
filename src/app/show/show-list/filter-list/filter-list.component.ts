@@ -73,15 +73,22 @@ export class FilterListComponent implements OnInit {
   }
 
   applyFilter(): void {
-    //this.selectedFilter.emit(this.filterOptions);
-    this.filterOptions.watchStatus = this.statusList.filter(s => s.checked);
-    this.filterOptions.productionHouse = this.productionHouseList.filter(p => p.checked);
-    this.filterOptions.onlineChannel = this.channelList.filter(c => c.checked);
-    this.filterOptions.language = this.languageList.filter(l => l.checked);    
+    this.filterOptions.watchStatus = this.statusList.filter(s => s.checked).map(t => t.watchStatusId);
+    this.filterOptions.productionHouse = this.productionHouseList.filter(p => p.checked).map(t=> t.productionHouseId);
+    this.filterOptions.onlineChannel = this.channelList.filter(c => c.checked).map(t => t.onlineChannelId);
+    this.filterOptions.language = this.languageList.filter(l => l.checked).map(t => t.languageId);
+    
+    this.selectedFilter.emit(this.filterOptions);
   }
 
   clearFilter(): void {
     this.filterOptions = new FilterModel();
+
+    this.productionHouseList.map(p => p.checked = false);
+    this.statusList.map(s => s.checked = false);
+    this.languageList.map(l => l.checked = false);
+    this.channelList.map(c => c.checked = false);
+
     this.applyFilter();
   }
 

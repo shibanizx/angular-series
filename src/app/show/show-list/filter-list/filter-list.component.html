@@ -17,7 +17,7 @@
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Production House
               <span class="caret"></span>
             </button>
-            <ul class="row form-group dropdown-menu">
+            <ul class="row form-group dropdown-menu scrollable-menu">
               <li *ngFor="let production of productionHouseList" id="production.productionHouseId">
                 <a> <input type="checkbox" [(ngModel)]="production.checked" /><span>{{production.productionHouse}}</span> </a>
               </li>
@@ -27,7 +27,7 @@
             <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Online Channel
                 <span class="caret"></span>
               </button>
-              <ul class="row form-group dropdown-menu">
+              <ul class="row form-group dropdown-menu scrollable-menu">
                 <li *ngFor="let channel of channelList" id="channel.onlineChannelId">
                   <a> <input type="checkbox" [(ngModel)]="channel.checked" /><span>{{channel.onlineChannel}}</span> </a>
                 </li>
@@ -37,7 +37,7 @@
             <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Language
                 <span class="caret"></span>
               </button>
-              <ul class="row form-group dropdown-menu">
+              <ul class="row form-group dropdown-menu scrollable-menu">
                 <li *ngFor="let language of languageList" id="language.languageId">
                   <a> <input type="checkbox" [(ngModel)]="language.checked" /><span>{{language.language}}</span> </a>
                 </li>
@@ -47,7 +47,7 @@
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Watch Status
             <span class="caret"></span>
           </button>
-          <ul class="row form-group dropdown-menu">
+          <ul class="row form-group dropdown-menu scrollable-menu">
             <li *ngFor="let status of statusList" id="status.watchStatusId">
               <a> <input type="checkbox" [(ngModel)]="status.checked" /><span>{{status.watchStatus}}</span> </a>
             </li>
