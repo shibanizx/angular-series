@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { ChartStatisticsService } from '../shared/service/chart-statistics.service';
+import { WatchStatusCount } from '../shared/model/watch-status-count';
 
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
@@ -12,83 +14,63 @@ More(Highcharts);
 noData(Highcharts);
 
 @Component({
-  selector: 'app-chart-statistics',
-  templateUrl: './chart-statistics.component.html',
-  styleUrls: ['./chart-statistics.component.css']
+    selector: 'app-chart-statistics',
+    templateUrl: './chart-statistics.component.html',
+    styleUrls: ['./chart-statistics.component.css']
 })
 export class ChartStatisticsComponent implements OnInit {
 
-  public options: any =  {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Browser market shares in January, 2018'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: 'red' || 'black'
+    public options: any = {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: true,
+            type: 'pie',
+        },
+        title: {
+            text: 'Show Count by Watched Status'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y}</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.y}',
+                    style: {
+                        color: '{point.color}'
+                    }
                 }
             }
-        }
-    },
-    series: [{
-        name: 'Brands',
-        colorByPoint: true,
-        type:'pie',
-        data: []
-        // data: [{
-        //     name: 'Chrome',
-        //     y: 61.41,
-        //     sliced: true,
-        //     selected: true
-        // }, {
-        //     name: 'Internet Explorer',
-        //     y: 11.84
-        // }, {
-        //     name: 'Firefox',
-        //     y: 10.85
-        // }, {
-        //     name: 'Edge',
-        //     y: 4.67
-        // }, {
-        //     name: 'Safari',
-        //     y: 4.18
-        // }, {
-        //     name: 'Sogou Explorer',
-        //     y: 1.64
-        // }, {
-        //     name: 'Opera',
-        //     y: 1.6
-        // }, {
-        //     name: 'QQ',
-        //     y: 1.2
-        // }, {
-        //     name: 'Other',
-        //     y: 2.61
-        // }]
-    }]
-}
+        },
+        series: [{
+            name: 'Shows',
+            colorByPoint: true,
+            type: 'pie',
+            data: []
+        }]
+    }
 
-  constructor() { }
+    private renderName : string = 'container';
 
-  ngOnInit() { 
+    constructor(private statisticsService: ChartStatisticsService) { }
 
-    
-
-  }
-    
-
+    ngOnInit() {        
+        this.statisticsService.getWatchStatusCount().subscribe(data => {
+            data.forEach(row => {
+                this.options.series[0].data.push({
+                    name : row.status,
+                    y : row.showCount,
+                    color : row.colorCode
+                })
+            });
+            Highcharts.chart(this.renderName, this.options);
+            Highcharts.chart('container2', this.options);
+        });  
+        
+        console.log(this.options);
+    }
 }

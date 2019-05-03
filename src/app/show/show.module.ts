@@ -21,6 +21,7 @@ import { OnlineChannelService } from './shared/service/online-channel.service';
 import { AudioLanguageService } from './shared/service/audio-language.service';
 import { WatchStatusService } from './shared/service/watch-status.service';
 import { GenreService } from './shared/service/genre.service';
+import { ChartStatisticsService } from './shared/service/chart-statistics.service';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { GenreService } from './shared/service/genre.service';
     OnlineChannelService,
     AudioLanguageService,
     WatchStatusService,
-    GenreService
+    GenreService,
+    ChartStatisticsService
   ]
 })
 export class ShowModule { }
