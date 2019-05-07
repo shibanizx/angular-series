@@ -1,8 +1,10 @@
 import { Observable } from 'rxjs/Observable';
 
-export class PieChartInputModel {
+export class ChartInputModel {
     public chartId : string;
     public seriesName : string;
     public chartTitle : string;
-    public data : Observable<Array<any>>
+    public chartSubtitle : string;
+    public data : Observable<any>
 }
+

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { PieChartInputModel } from '../../shared/model/pie-chart-input-model';
+import { ChartInputModel } from '../../shared/model/chart-input-model';
 
 
 declare var require: any;
@@ -21,7 +21,7 @@ noData(Highcharts);
 })
 export class PieChartComponent implements OnInit {
 
-  @Input() chartInput: PieChartInputModel;
+  @Input() chartInput: ChartInputModel;
 
   public options: any = {
     chart: {
@@ -72,7 +72,7 @@ export class PieChartComponent implements OnInit {
         this.chartInput.data.subscribe(data => {
           data.forEach(row => {
             this.options.series[0].data.push({
-              name: row.status,
+              name: row.watchStatus,
               y: row.showCount,
               color: row.colorCode
             })

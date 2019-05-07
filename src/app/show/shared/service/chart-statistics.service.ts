@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { WatchStatusCount } from '../model/watch-status-count';
-import { FavoritesByNetwork } from '../model/favorites-by-network';
+import { GenreNetworkData } from '../model/genre-network-data';
+import { WatchStatusModel } from '../model/watch-status-model';
+import { ProductionHouseModel } from '../model/production-house-model';
 
 @Injectable()
 export class ChartStatisticsService {
@@ -16,12 +17,16 @@ export class ChartStatisticsService {
     this.rootUrl = "http://localhost:23442/api/statistics/";
   }
 
-  public getWatchStatusCount() : Observable<Array<WatchStatusCount>> {
-    return this.http.get<Array<WatchStatusCount>>(this.rootUrl + "statusCount");
+  public getWatchStatusCount() : Observable<Array<WatchStatusModel>> {
+    return this.http.get<Array<WatchStatusModel>>(this.rootUrl + "statusCount");
   }
 
-  public getFavoritesByNetwork() : Observable<Array<FavoritesByNetwork>> {
-    return this.http.get<Array<FavoritesByNetwork>>(this.rootUrl + "favoritesByNetwork");
+  public getFavoritesByNetwork() : Observable<Array<ProductionHouseModel>> {
+    return this.http.get<Array<ProductionHouseModel>>(this.rootUrl + "favoritesByNetwork");
+  }
+
+  public getGenreBasedNetworkData() : Observable<GenreNetworkData> {
+    return this.http.get<GenreNetworkData>(this.rootUrl + "genreBasedNetworkData");
   }
 
 }

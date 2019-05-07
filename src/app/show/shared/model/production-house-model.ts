@@ -3,4 +3,5 @@ export class ProductionHouseModel {
     productionHouse : string;
     colorCode : string;
     checked : boolean;
+    favoriteCount : number;
 }

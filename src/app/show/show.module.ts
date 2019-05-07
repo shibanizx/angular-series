@@ -23,6 +23,7 @@ import { WatchStatusService } from './shared/service/watch-status.service';
 import { GenreService } from './shared/service/genre.service';
 import { ChartStatisticsService } from './shared/service/chart-statistics.service';
 import { PieChartComponent } from './chart-statistics/pie-chart/pie-chart.component';
+import { StreamGraphComponent } from './chart-statistics/stream-graph/stream-graph.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { PieChartComponent } from './chart-statistics/pie-chart/pie-chart.compon
     EditShowComponent,
     FilterListComponent,
     ChartStatisticsComponent,
-    PieChartComponent
+    PieChartComponent,
+    StreamGraphComponent
   ],
   providers: [ 
     SeriesService,

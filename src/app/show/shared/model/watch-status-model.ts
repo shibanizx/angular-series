@@ -3,4 +3,5 @@ export class WatchStatusModel {
     watchStatus : string;
     colorCode : string;
     checked: boolean;
+    showCount : number;
 }
