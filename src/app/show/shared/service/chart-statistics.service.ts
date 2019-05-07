@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { WatchStatusCount } from '../model/watch-status-count';
+import { FavoritesByNetwork } from '../model/favorites-by-network';
 
 @Injectable()
 export class ChartStatisticsService {
@@ -17,6 +18,10 @@ export class ChartStatisticsService {
 
   public getWatchStatusCount() : Observable<Array<WatchStatusCount>> {
     return this.http.get<Array<WatchStatusCount>>(this.rootUrl + "statusCount");
+  }
+
+  public getFavoritesByNetwork() : Observable<Array<FavoritesByNetwork>> {
+    return this.http.get<Array<FavoritesByNetwork>>(this.rootUrl + "favoritesByNetwork");
   }
 
 }

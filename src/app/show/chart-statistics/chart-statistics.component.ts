@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { ChartStatisticsService } from '../shared/service/chart-statistics.service';
 import { WatchStatusCount } from '../shared/model/watch-status-count';
+import { PieChartInputModel } from '../shared/model/pie-chart-input-model';
 
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
@@ -20,57 +21,30 @@ noData(Highcharts);
 })
 export class ChartStatisticsComponent implements OnInit {
 
-    public options: any = {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: true,
-            type: 'pie',
-        },
-        title: {
-            text: 'Show Count by Watched Status'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.y}',
-                    style: {
-                        color: '{point.color}'
-                    }
-                }
-            }
-        },
-        series: [{
-            name: 'Shows',
-            colorByPoint: true,
-            type: 'pie',
-            data: []
-        }]
-    }
-
-    private renderName : string = 'container';
+    public statusCountInput: PieChartInputModel;
+    public favoritesInput: PieChartInputModel;
 
     constructor(private statisticsService: ChartStatisticsService) { }
 
-    ngOnInit() {        
-        this.statisticsService.getWatchStatusCount().subscribe(data => {
-            data.forEach(row => {
-                this.options.series[0].data.push({
-                    name : row.status,
-                    y : row.showCount,
-                    color : row.colorCode
-                })
-            });
-            Highcharts.chart(this.renderName, this.options);
-            Highcharts.chart('container2', this.options);
-        });  
-        
-        console.log(this.options);
+    ngOnInit() {
+        this.initializeStatusCountChart();
+        this.initializeFavoritesByNetworkChart();
     }
+
+    private initializeStatusCountChart(): void {
+        this.statusCountInput = new PieChartInputModel();
+        this.statusCountInput.chartId = 'status-count';
+        this.statusCountInput.chartTitle = 'Show Count by Watched Status';
+        this.statusCountInput.seriesName = 'Shows';
+        this.statusCountInput.data = this.statisticsService.getWatchStatusCount();
+    }
+
+    private initializeFavoritesByNetworkChart() : void {
+        this.favoritesInput = new PieChartInputModel();
+        this.favoritesInput.chartId = 'favorite-by-network';
+        this.favoritesInput.chartTitle = 'Favorites By Network';
+        this.favoritesInput.seriesName = 'Favorites';
+        this.favoritesInput.data = this.statisticsService.getFavoritesByNetwork();
+    }
+
 }

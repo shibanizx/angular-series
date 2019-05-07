@@ -11,10 +11,10 @@
   </div>
 
   <div class="form-group">
-    <label for="production">Production</label>
+    <label for="production">Network</label>
     <select name="productionHouse" class="form-control" id="production"
       [(ngModel)]="show.productionHouse.productionHouseId" name="productionHouse" required>
-      <option [ngValue]="undefined" disabled selected> The Show's produced by... </option>
+      <option [ngValue]="undefined" disabled selected> Which network is this show on? </option>
       <option *ngFor="let production of productionHouseList" id="production.productionHouseId"
         [value]="production.productionHouseId">{{production.productionHouse}}</option>
     </select>

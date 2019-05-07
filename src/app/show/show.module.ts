@@ -22,6 +22,7 @@ import { AudioLanguageService } from './shared/service/audio-language.service';
 import { WatchStatusService } from './shared/service/watch-status.service';
 import { GenreService } from './shared/service/genre.service';
 import { ChartStatisticsService } from './shared/service/chart-statistics.service';
+import { PieChartComponent } from './chart-statistics/pie-chart/pie-chart.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { ChartStatisticsService } from './shared/service/chart-statistics.servic
     RemoveSpacesPipe,
     EditShowComponent,
     FilterListComponent,
-    ChartStatisticsComponent
+    ChartStatisticsComponent,
+    PieChartComponent
   ],
   providers: [ 
     SeriesService,
