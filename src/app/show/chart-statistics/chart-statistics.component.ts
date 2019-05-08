@@ -51,10 +51,10 @@ export class ChartStatisticsComponent implements OnInit {
     }
 
     private initializeGenreBasedNetworkData() : void {
-        // this.genreNetworkInput = new ChartInputModel();
-        // this.genreNetworkInput.chartId = 'genre-network-data';
-        // this.genreNetworkInput.chartTitle = 'Genre based Network Data';
-        // this.genreNetworkInput.chartSubtitle = 'How networks fare across genres';
-        //this.statisticsService.getGenreBasedNetworkData().subscribe(data => console.log(data));
+        this.genreNetworkInput = new ChartInputModel();
+        this.genreNetworkInput.chartId = 'genre-network-data';
+        this.genreNetworkInput.chartTitle = 'Genre based Network Data';
+        this.genreNetworkInput.chartSubtitle = 'How networks fare across genres';
+        this.genreNetworkInput.data = this.statisticsService.getGenreBasedNetworkData();
     }
 }

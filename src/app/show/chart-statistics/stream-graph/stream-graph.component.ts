@@ -21,7 +21,7 @@ stream(Highcharts);
 })
 export class StreamGraphComponent implements OnInit {
 
-  @Input() chartInput : ChartInputModel;
+  @Input() chartInput: ChartInputModel;
 
   public options: any = {
     chart: {
@@ -58,7 +58,9 @@ export class StreamGraphComponent implements OnInit {
     yAxis: {
       visible: false,
       startOnTick: false,
-      endOnTick: false
+      endOnTick: false,
+      max: 30,
+      min: -30
     },
     legend: {
       enabled: false
@@ -85,17 +87,17 @@ export class StreamGraphComponent implements OnInit {
     this.options.subtitle.text = this.chartInput.chartSubtitle;
 
     this.chartInput.data.subscribe(data => {
-      data.forEach(row => {
-        this.options.series[0].data.push({
-          name: row.watchStatus,
-          y: row.showCount,
-          color: row.colorCode
-        })
-      })
+      this.options.xAxis.categories = data.genreData;
+      data.networkData.forEach(row => {
+        this.options.colors.push(row.colorCode);
+        this.options.series.push({
+          name: row.productionHouse,
+          data: row.genreCountList
+        });
+      });
       Highcharts.chart(this.chartInput.chartId, this.options);
     });
 
-    Highcharts.chart('container', this.options);
   }
 
 }
