@@ -25,6 +25,7 @@ export class ChartStatisticsComponent implements OnInit {
     public statusCountInput: ChartInputModel;
     public favoritesInput: ChartInputModel;
     public genreNetworkInput : ChartInputModel;
+    public networkEpisodesInput : ChartInputModel;
 
     constructor(private statisticsService: ChartStatisticsService) { }
 
@@ -32,6 +33,7 @@ export class ChartStatisticsComponent implements OnInit {
         this.initializeStatusCountChart();
         this.initializeFavoritesByNetworkChart();
         this.initializeGenreBasedNetworkData();
+        this.initializeNetworkBasedEpisodeData();
     }
 
     private initializeStatusCountChart(): void {
@@ -56,5 +58,12 @@ export class ChartStatisticsComponent implements OnInit {
         this.genreNetworkInput.chartTitle = 'Genre based Network Data';
         this.genreNetworkInput.chartSubtitle = 'How networks fare across genres';
         this.genreNetworkInput.data = this.statisticsService.getGenreBasedNetworkData();
+    }
+
+    private initializeNetworkBasedEpisodeData() : void {
+        this.networkEpisodesInput = new ChartInputModel();
+        this.networkEpisodesInput.chartId = 'network-episode-data';
+        this.networkEpisodesInput.chartTitle = 'Episode Count by Show';
+        this.networkEpisodesInput.data = this.statisticsService.getNetworkBasedEpisodeData();
     }
 }

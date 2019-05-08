@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { GenreNetworkData } from '../model/genre-network-data';
+import { GenreNetworkData, NetworkData } from '../model/genre-network-data';
 import { WatchStatusModel } from '../model/watch-status-model';
 import { ProductionHouseModel } from '../model/production-house-model';
 
@@ -27,6 +27,10 @@ export class ChartStatisticsService {
 
   public getGenreBasedNetworkData() : Observable<GenreNetworkData> {
     return this.http.get<GenreNetworkData>(this.rootUrl + "genreBasedNetworkData");
+  }
+
+  public getNetworkBasedEpisodeData() : Observable<Array<NetworkData>> {
+    return this.http.get<Array<NetworkData>>(this.rootUrl + "networkBasedEpisodeData");
   }
 
 }

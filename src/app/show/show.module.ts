@@ -24,6 +24,7 @@ import { GenreService } from './shared/service/genre.service';
 import { ChartStatisticsService } from './shared/service/chart-statistics.service';
 import { PieChartComponent } from './chart-statistics/pie-chart/pie-chart.component';
 import { StreamGraphComponent } from './chart-statistics/stream-graph/stream-graph.component';
+import { PackedBubbleComponent } from './chart-statistics/packed-bubble/packed-bubble.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { StreamGraphComponent } from './chart-statistics/stream-graph/stream-gra
     FilterListComponent,
     ChartStatisticsComponent,
     PieChartComponent,
-    StreamGraphComponent
+    StreamGraphComponent,
+    PackedBubbleComponent
   ],
   providers: [ 
     SeriesService,
