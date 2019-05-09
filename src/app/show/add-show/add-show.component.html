@@ -1,115 +1,121 @@
-<div *ngIf="alertMessage" class="alert alert-warning alert-dismissible fade in" role="alert">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>{{alertMessage}}</strong>
+<div class="panel panel-default panel-body">
+  <div *ngIf="alertMessage" class="alert alert-warning alert-dismissible fade in" role="alert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{alertMessage}}</strong>
+  </div>
+  <form class="form-vertical">
+    <label for="show">Show</label>
+    <div class="form-group input-group">
+      <span class="input-group-addon" id="show-addon"><i class="fa fa-television"></i></span>
+      <input type="text" class="form-control" id="show" placeholder="Enter the name of the Show"
+        [(ngModel)]="show.showName" name="showName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="production">Network</label>
+      <select name="productionHouse" class="form-control" id="production"
+        [(ngModel)]="show.productionHouse.productionHouseId" name="productionHouse" required>
+        <option [ngValue]="undefined" disabled selected> Which network is this show on? </option>
+        <option *ngFor="let production of productionHouseList" id="production.productionHouseId"
+          [value]="production.productionHouseId">{{production.productionHouse}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <ng-multiselect-dropdown placeholder="Select the genres supported by the show" [data]="genreList"
+        [(ngModel)]="show.genre" [settings]="dropdownSettings" name="genres" required>
+      </ng-multiselect-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Current Status</label>
+      <select class="form-control" id="status" [(ngModel)]="show.watchStatus.watchStatusId" name="watchStatus" required>
+        <option [ngValue]="undefined" disabled selected> How far have you watched this show? </option>
+        <option *ngFor="let status of statusList" id="status.watchStatusId" [value]="status.watchStatusId">
+          {{status.watchStatus}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="ended">Ended/Cancelled</label>
+      <input type="checkbox" id="ended" [(ngModel)]="show.ended" name="ended">
+    </div>
+
+    <div class="form-group">
+      <label for="language">Language</label>
+      <select class="form-control" id="language" [(ngModel)]="show.language.languageId" name="language" required>
+        <option [ngValue]="undefined" disabled selected>What language is the show in?</option>
+        <option *ngFor="let language of languageList" id="language.languageId" [value]="language.languageId">
+          {{language.language}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="channel">Online Channel</label>
+      <select class="form-control" id="channel" [(ngModel)]="show.onlineChannel.onlineChannelId" name="onlineChannel"
+        required>
+        <option [ngValue]="undefined" disabled selected>In which Online Channel can you watch the show?</option>
+        <option *ngFor="let channel of channelList" id="channel.onlineChannelId" [value]="channel.onlineChannelId">
+          {{channel.onlineChannel}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="favorite">Favorite</label>
+      <input type="checkbox" id="favorite" [(ngModel)]="show.favorite" name="favorite">
+    </div>
+
+    <label for="seasons">Number Of Seasons</label>
+    <div class="form-group">
+      <input class="form-control" type="number" id="seasons" name="seasons" min="0" max="100"
+        [(ngModel)]="show.numberOfSeasons" name="numberOfSeasons" placeholder="How many seasons have aired?" required>
+    </div>
+
+    <div class="form-group">
+      <label for="episodes">Total Episodes</label>
+      <input class="form-control" type="number" id="episodes" name="episodes" min="0" max="100"
+        [(ngModel)]="show.totalEpisodes" name="totalEpisodes" placeholder="How many episodes have released so far?"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="episodeLength">Episode Length</label>
+      <input class="form-control" type="number" id="episodeLength" name="episodeLength" min="0" max="100"
+        [(ngModel)]="show.episodeLength" name="episodeLength" placeholder="How long is each episode?" required>
+    </div>
+
+    <label for="ratings">Rating</label>
+    <div class="form-group">
+      <fieldset class="rating">
+        <input type="radio" id="rating5" name="rating" [value]="5" [(ngModel)]="show.rating.rating"
+          name="rating5" /><label class="full" for="rating5"
+          title="{{ratingsList && ratingsList[4].ratingText}}"></label>
+        <input type="radio" id="rating4" name="rating" [value]="4" [(ngModel)]="show.rating.rating"
+          name="rating4" /><label class="full" for="rating4"
+          title="{{ratingsList && ratingsList[3].ratingText}}"></label>
+        <input type="radio" id="rating3" name="rating" [value]="3" [(ngModel)]="show.rating.rating"
+          name="rating3" /><label class="full" for="rating3"
+          title="{{ratingsList && ratingsList[2].ratingText}}"></label>
+        <input type="radio" id="rating2" name="rating" [value]="2" [(ngModel)]="show.rating.rating"
+          name="rating2" /><label class="full" for="rating2"
+          title="{{ratingsList && ratingsList[1].ratingText}}"></label>
+        <input type="radio" id="rating1" name="rating" [value]="1" [(ngModel)]="show.rating.rating"
+          name="rating1" /><label class="full" for="rating1"
+          title="{{ratingsList && ratingsList[0].ratingText}}"></label>
+      </fieldset> <br>
+    </div>
+
+    <label for="remarks">Remarks</label>
+    <div class="form-group">
+      <textarea class="form-control" rows="3" id="remarks" [(ngModel)]="show.remarks" name="remarks"
+        placeholder="Can we get something close to a review?"></textarea>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success" (click)="submitShow()">Submit</button>
+      <button type="reset" class="btn btn-primary" (click)="initializeModel()">Reset</button>
+    </div>
+  </form>
 </div>
-<h3>Form</h3>
-<form class="form-vertical">
-  <label for="show">Show</label>
-  <div class="form-group input-group">
-    <span class="input-group-addon" id="show-addon"><i class="fa fa-television"></i></span>
-    <input type="text" class="form-control" id="show" placeholder="Enter the name of the Show"
-      [(ngModel)]="show.showName" name="showName" required>
-  </div>
-
-  <div class="form-group">
-    <label for="production">Network</label>
-    <select name="productionHouse" class="form-control" id="production"
-      [(ngModel)]="show.productionHouse.productionHouseId" name="productionHouse" required>
-      <option [ngValue]="undefined" disabled selected> Which network is this show on? </option>
-      <option *ngFor="let production of productionHouseList" id="production.productionHouseId"
-        [value]="production.productionHouseId">{{production.productionHouse}}</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="genre">Genre</label>
-    <ng-multiselect-dropdown placeholder="Select the genres supported by the show" [data]="genreList"
-      [(ngModel)]="show.genre" [settings]="dropdownSettings" name="genres" required>
-    </ng-multiselect-dropdown>
-  </div>
-
-  <div class="form-group">
-    <label for="status">Current Status</label>
-    <select class="form-control" id="status" [(ngModel)]="show.watchStatus.watchStatusId" name="watchStatus" required>
-      <option [ngValue]="undefined" disabled selected> How far have you watched this show? </option>
-      <option *ngFor="let status of statusList" id="status.watchStatusId" [value]="status.watchStatusId">
-        {{status.watchStatus}}
-      </option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="ended">Ended/Cancelled</label>
-    <input type="checkbox" id="ended" [(ngModel)]="show.ended" name="ended">
-  </div>
-
-  <div class="form-group">
-    <label for="language">Language</label>
-    <select class="form-control" id="language" [(ngModel)]="show.language.languageId" name="language" required>
-      <option [ngValue]="undefined" disabled selected>What language is the show in?</option>
-      <option *ngFor="let language of languageList" id="language.languageId" [value]="language.languageId">
-        {{language.language}}</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="channel">Online Channel</label>
-    <select class="form-control" id="channel" [(ngModel)]="show.onlineChannel.onlineChannelId" name="onlineChannel"
-      required>
-      <option [ngValue]="undefined" disabled selected>In which Online Channel can you watch the show?</option>
-      <option *ngFor="let channel of channelList" id="channel.onlineChannelId" [value]="channel.onlineChannelId">
-        {{channel.onlineChannel}}</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="favorite">Favorite</label>
-    <input type="checkbox" id="favorite" [(ngModel)]="show.favorite" name="favorite">
-  </div>
-
-  <label for="seasons">Number Of Seasons</label>
-  <div class="form-group">
-    <input class="form-control" type="number" id="seasons" name="seasons" min="0" max="100"
-      [(ngModel)]="show.numberOfSeasons" name="numberOfSeasons" placeholder="How many seasons have aired?" required>
-  </div>
-
-  <div class="form-group">
-    <label for="episodes">Total Episodes</label>
-    <input class="form-control" type="number" id="episodes" name="episodes" min="0" max="100"
-      [(ngModel)]="show.totalEpisodes" name="totalEpisodes" placeholder="How many episodes have released so far?"
-      required>
-  </div>
-
-  <div class="form-group">
-    <label for="episodeLength">Episode Length</label>
-    <input class="form-control" type="number" id="episodeLength" name="episodeLength" min="0" max="100"
-      [(ngModel)]="show.episodeLength" name="episodeLength" placeholder="How long is each episode?" required>
-  </div>
-
-  <label for="ratings">Rating</label>
-  <div class="form-group">
-   <fieldset class="rating">
-      <input type="radio" id="rating5" name="rating" [value]="5" [(ngModel)]="show.rating.rating"
-        name="rating5" /><label class="full" for="rating5" title="{{ratingsList && ratingsList[4].ratingText}}"></label>
-      <input type="radio" id="rating4" name="rating" [value]="4" [(ngModel)]="show.rating.rating"
-        name="rating4" /><label class="full" for="rating4" title="{{ratingsList && ratingsList[3].ratingText}}"></label>
-      <input type="radio" id="rating3" name="rating" [value]="3" [(ngModel)]="show.rating.rating"
-        name="rating3" /><label class="full" for="rating3" title="{{ratingsList && ratingsList[2].ratingText}}"></label>
-      <input type="radio" id="rating2" name="rating" [value]="2" [(ngModel)]="show.rating.rating"
-        name="rating2" /><label class="full" for="rating2" title="{{ratingsList && ratingsList[1].ratingText}}"></label>
-      <input type="radio" id="rating1" name="rating" [value]="1" [(ngModel)]="show.rating.rating"
-        name="rating1" /><label class="full" for="rating1" title="{{ratingsList && ratingsList[0].ratingText}}"></label>
-    </fieldset> <br>
-  </div>
-
-  <label for="remarks">Remarks</label>
-  <div class="form-group">
-    <textarea class="form-control" rows="3" id="remarks" [(ngModel)]="show.remarks" name="remarks"
-      placeholder="Can we get something close to a review?"></textarea>
-  </div>
-
-  <div class="text-center">
-    <button type="submit" class="btn btn-success" (click)="submitShow()">Submit</button>
-    <button type="reset" class="btn btn-primary" (click)="initializeModel()">Reset</button>
-  </div>
-</form>

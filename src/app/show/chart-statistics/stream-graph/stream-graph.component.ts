@@ -48,7 +48,7 @@ export class StreamGraphComponent implements OnInit {
       categories: [],
       labels: {
         align: 'left',
-        reserveSpace: false,
+        reserveSpace: true,
         rotation: 270
       },
       lineWidth: 0,
@@ -60,7 +60,7 @@ export class StreamGraphComponent implements OnInit {
       startOnTick: false,
       endOnTick: false,
       max: 30,
-      min: -30
+      min: -40
     },
     legend: {
       enabled: false

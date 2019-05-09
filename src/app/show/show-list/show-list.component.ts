@@ -20,15 +20,15 @@ export class ShowListComponent implements OnInit {
     this.getShowList();
   }
 
-  getShowList() : void {
+  public getShowList() : void {
     this.seriesService.getShows().subscribe(showList => this.shows = showList);
   }
 
-  editShow(show : ShowModel) : void {
+  public editShow(show : ShowModel) : void {
     this.seriesService.show = show;
   }
 
-  filterList(filterOptions: FilterModel) : void {
+  public filterList(filterOptions: FilterModel) : void {
     this.filterOptions = filterOptions;
     this.shows = [...this.shows];
   }
