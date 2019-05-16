@@ -63,7 +63,6 @@ export class SeriesFilterPipe implements PipeTransform {
     }
 
     return filters;
-
   }
 
 }

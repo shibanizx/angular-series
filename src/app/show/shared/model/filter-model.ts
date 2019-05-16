@@ -10,4 +10,13 @@ export class FilterModel {
     onlineChannel: Array<string>;
     watchStatus: Array<number>;
     language: Array<string>;
+
+    constructor() {
+        this.isFavorite = false;
+        this.isEnded = false;
+        this.productionHouse = new Array<string>();
+        this.onlineChannel = new Array<string>();
+        this.watchStatus = new Array<number>();
+        this.language = new Array<string>();
+    }
 }

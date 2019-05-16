@@ -48,31 +48,31 @@ export class FilterListComponent implements OnInit {
 
   ngOnInit() { }
 
-  getWatchStatuses(): void {
+  private getWatchStatuses(): void {
     this.statusService.getWatchStatusList().subscribe(status => {
       this.statusList = status;
     });
   }
 
-  getOnlineChannels(): void {
+  private getOnlineChannels(): void {
     this.channelService.getOnlineChannelList().subscribe(channel => {
       this.channelList = channel;
     })
   }
 
-  getProductionHouses(): void {
+  private getProductionHouses(): void {
     this.productionHouseService.getProductionHouseList().subscribe(productionHouse => {
       this.productionHouseList = productionHouse;
     });
   }
 
-  getLanguages(): void {
+  private getLanguages(): void {
     this.languageService.getLanguageList().subscribe(language => {
       this.languageList = language;
     });
   }
 
-  applyFilter(): void {
+  public applyFilter(): void {
     this.filterOptions.watchStatus = this.statusList.filter(s => s.checked).map(t => t.watchStatusId);
     this.filterOptions.productionHouse = this.productionHouseList.filter(p => p.checked).map(t=> t.productionHouseId);
     this.filterOptions.onlineChannel = this.channelList.filter(c => c.checked).map(t => t.onlineChannelId);
@@ -81,7 +81,7 @@ export class FilterListComponent implements OnInit {
     this.selectedFilter.emit(this.filterOptions);
   }
 
-  clearFilter(): void {
+  public clearFilter(): void {
     this.filterOptions = new FilterModel();
 
     this.productionHouseList.map(p => p.checked = false);
@@ -91,5 +91,4 @@ export class FilterListComponent implements OnInit {
 
     this.applyFilter();
   }
-
 }
