@@ -1,7 +1,7 @@
 <div class="panel panel-default panel-body">
   <app-filter-list (selectedFilter)="filterList($event)"></app-filter-list>
   <div class="panel-body list-group">
-    <div *ngFor="let show of shows | seriesFilter: filterOptions | paginate : { itemsPerPage: 10, currentPage: p}">
+    <div *ngFor="let show of shows | seriesFilter: filterOptions | paginate : { itemsPerPage: 10, currentPage: p} ">
       <div class="row">
         <app-show-list-item [routerLink]="['/editShow']" [show]="show" (click)="editShow(show)"
           style="cursor: pointer;">

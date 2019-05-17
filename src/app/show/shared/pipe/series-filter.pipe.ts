@@ -19,7 +19,8 @@ export class SeriesFilterPipe implements PipeTransform {
         && filterOptions.productionHouse.length == 0
         && filterOptions.onlineChannel.length == 0
         && filterOptions.language.length == 0
-        && filterOptions.watchStatus.length == 0))
+        && filterOptions.watchStatus.length == 0
+        && filterOptions.ratings.length == 0))
       return shows;
 
     if (filterOptions.isFavorite != null && filterOptions.isFavorite) {

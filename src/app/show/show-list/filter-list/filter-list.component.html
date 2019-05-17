@@ -15,33 +15,34 @@
         </span>
         <span class="col-lg-2">
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Network
-              <span class="caret"></span>
-            </button>
-            <ul class="row form-group dropdown-menu scrollable-menu">
-              <li *ngFor="let production of productionHouseList" id="production.productionHouseId">
-                <a> <input type="checkbox" [(ngModel)]="production.checked" /><span>{{production.productionHouse}}</span> </a>
-              </li>
-            </ul>
+            <span class="caret"></span>
+          </button>
+          <ul class="row form-group dropdown-menu scrollable-menu">
+            <li *ngFor="let production of productionHouseList" id="production.productionHouseId">
+              <a> <input type="checkbox" [(ngModel)]="production.checked" /><span>{{production.productionHouse}}</span>
+              </a>
+            </li>
+          </ul>
         </span>
         <span class="col-lg-2">
-            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Online Channel
-                <span class="caret"></span>
-              </button>
-              <ul class="row form-group dropdown-menu scrollable-menu">
-                <li *ngFor="let channel of channelList" id="channel.onlineChannelId">
-                  <a> <input type="checkbox" [(ngModel)]="channel.checked" /><span>{{channel.onlineChannel}}</span> </a>
-                </li>
-              </ul>
+          <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Online Channel
+            <span class="caret"></span>
+          </button>
+          <ul class="row form-group dropdown-menu scrollable-menu">
+            <li *ngFor="let channel of channelList" id="channel.onlineChannelId">
+              <a> <input type="checkbox" [(ngModel)]="channel.checked" /><span>{{channel.onlineChannel}}</span> </a>
+            </li>
+          </ul>
         </span>
         <span class="col-lg-2">
-            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Language
-                <span class="caret"></span>
-              </button>
-              <ul class="row form-group dropdown-menu scrollable-menu">
-                <li *ngFor="let language of languageList" id="language.languageId">
-                  <a> <input type="checkbox" [(ngModel)]="language.checked" /><span>{{language.language}}</span> </a>
-                </li>
-              </ul>
+          <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Language
+            <span class="caret"></span>
+          </button>
+          <ul class="row form-group dropdown-menu scrollable-menu">
+            <li *ngFor="let language of languageList" id="language.languageId">
+              <a> <input type="checkbox" [(ngModel)]="language.checked" /><span>{{language.language}}</span> </a>
+            </li>
+          </ul>
         </span>
         <span class="col-lg-2">
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Watch Status
@@ -54,7 +55,17 @@
           </ul>
         </span>
       </div>
-      <div class="text-center">
+      <div class="inline row text-center">
+        <span *ngFor="let rating of ratingsList">
+          <!-- <div class="inline form-group"> -->
+          <span  [ngStyle]="{ 'color' : rating.colorCode }"
+            *ngFor="let star of ' '.repeat(rating.rating).split('')"><i class="fa fa-star"></i></span>
+          <span >{{ rating.ratingText }}</span>
+        <!-- </div> -->
+        </span>
+        
+      </div>
+      <div class="row text-center">
         <button type="submit" class="btn btn-success" (click)="applyFilter()">Apply Filters</button>
         <button type="reset" class="btn btn-primary" (click)="clearFilter()">Clear Filters</button>
       </div>

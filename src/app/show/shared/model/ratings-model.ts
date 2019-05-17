@@ -1,5 +1,6 @@
 export class RatingsModel {
-    rating : string;
+    rating : number;
     ratingText : string;
     ratingColorCode : string;
+    checked: boolean;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { SeriesService } from '../shared/service/series.service';
 import { ShowModel } from '../shared/model/show-model';
 import { FilterModel } from '../shared/model/filter-model';
