@@ -61,7 +61,7 @@ export class AddShowComponent implements OnInit {
 
   ngOnInit() {  }
 
-  initializeModel() : void {
+  public initializeModel() : void {
     this.show = new ShowModel();
     this.show.productionHouse = new ProductionHouseModel();
     this.show.onlineChannel = new OnlineChannelModel();
@@ -72,46 +72,50 @@ export class AddShowComponent implements OnInit {
     this.alertMessage = '';
   }
 
-  getGenres() : void {
+  private getGenres() : void {
     this.genreService.getGenreList().subscribe(genre => {
       this.genreList = genre;
     });
   }
 
-  getWatchStatuses() : void {
+  private getWatchStatuses() : void {
     this.statusService.getWatchStatusList().subscribe(status => {
       this.statusList = status;
     });
   }
 
-  getOnlineChannels() : void {
+  private getOnlineChannels() : void {
     this.channelService.getOnlineChannelList().subscribe(channel => {
       this.channelList = channel;
     })
   }
 
-  getProductionHouses() : void {
+  private getProductionHouses() : void {
     this.productionHouseService.getProductionHouseList().subscribe(productionHouse => {
       this.productionHouseList = productionHouse;
     });
   }
 
-  getLanguages() : void {
+  private getLanguages() : void {
     this.languageService.getLanguageList().subscribe(language => {
       this.languageList = language;
     });
   }
 
-  getRatings() : void {
+  private getRatings() : void {
     this.ratingsService.getRatingsList().subscribe(rating => {
       this.ratingsList = rating;
     });
   }
   
-  submitShow() : void {
+  public submitShow() : void {
     this.show.addedOn = this.show.modifiedOn;
-    this.seriesService.addShow(this.show).subscribe(message => this.alertMessage = message);
-
-    this.initializeModel();
+    this.seriesService.addShow(this.show).subscribe(
+      successMessage => {
+        this.alertMessage = successMessage,
+        this.initializeModel();
+      },
+      failureMessage => this.alertMessage = failureMessage.error
+    );
   }
 }

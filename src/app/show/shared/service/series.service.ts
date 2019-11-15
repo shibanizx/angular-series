@@ -11,18 +11,18 @@ import { ProductionHouseModel } from '../model/production-house-model';
 @Injectable()
 export class SeriesService {
 
-  rootUrl : string;
+  private rootUrl : string;
 
-  show : ShowModel;
+  public show : ShowModel;
 
-  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
+  private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
 
   constructor(private http : HttpClient) { 
     
-    this.rootUrl = "http://localhost:23442/";
+    this.rootUrl = "http://localhost:23442/api/series";
   }
 
-  initializeModel() : void {
+  public initializeModel() : void {
     this.show = new ShowModel();
     this.show.productionHouse = new ProductionHouseModel();
     this.show.onlineChannel = new OnlineChannelModel();
@@ -30,21 +30,21 @@ export class SeriesService {
     this.show.language = new AudioLanguageModel();
   }
 
-  updateShow(showId: string, show : ShowModel) : Observable<string> {
+  public updateShow(showId: string, show : ShowModel) : Observable<string> {
     let jsonString : string = JSON.stringify(show);
-    return this.http.put<string>(this.rootUrl + "api/series?showId=" + showId, jsonString, this.httpOptions);
+    return this.http.put<string>(this.rootUrl + "?showId=" + showId, jsonString, this.httpOptions);
   }
 
-  deleteShow(showId : string) : boolean {
+  public deleteShow(showId : string) : boolean {
     return true;
   }
 
-  addShow(show : ShowModel) : Observable<string> {
+  public addShow(show : ShowModel) : Observable<string> {
     let jsonString : string = JSON.stringify(show);
-    return this.http.post<string>(this.rootUrl + "api/series", jsonString, this.httpOptions);
+    return this.http.post<string>(this.rootUrl, jsonString, this.httpOptions);
   }
 
-  getShows() : Observable<Array<ShowModel>> {
-    return this.http.get<Array<ShowModel>>(this.rootUrl + "api/series");
+  public getShows() : Observable<Array<ShowModel>> {
+    return this.http.get<Array<ShowModel>>(this.rootUrl);
   }
 }

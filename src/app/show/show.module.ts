@@ -21,6 +21,10 @@ import { OnlineChannelService } from './shared/service/online-channel.service';
 import { AudioLanguageService } from './shared/service/audio-language.service';
 import { WatchStatusService } from './shared/service/watch-status.service';
 import { GenreService } from './shared/service/genre.service';
+import { ChartStatisticsService } from './shared/service/chart-statistics.service';
+import { PieChartComponent } from './chart-statistics/pie-chart/pie-chart.component';
+import { StreamGraphComponent } from './chart-statistics/stream-graph/stream-graph.component';
+import { PackedBubbleComponent } from './chart-statistics/packed-bubble/packed-bubble.component';
 
 @NgModule({
   imports: [
@@ -45,7 +49,10 @@ import { GenreService } from './shared/service/genre.service';
     RemoveSpacesPipe,
     EditShowComponent,
     FilterListComponent,
-    ChartStatisticsComponent
+    ChartStatisticsComponent,
+    PieChartComponent,
+    StreamGraphComponent,
+    PackedBubbleComponent
   ],
   providers: [ 
     SeriesService,
@@ -54,7 +61,8 @@ import { GenreService } from './shared/service/genre.service';
     OnlineChannelService,
     AudioLanguageService,
     WatchStatusService,
-    GenreService
+    GenreService,
+    ChartStatisticsService
   ]
 })
 export class ShowModule { }
